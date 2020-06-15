@@ -1,4 +1,4 @@
-namespace Gen
+namespace GeradorClasseMVC
 {
     partial class Principal
     {
@@ -63,7 +63,7 @@ namespace Gen
             // 
             // novoToolStripMenuItem
             // 
-            this.novoToolStripMenuItem.Image = global::Gen.Properties.Resources.edge;
+            this.novoToolStripMenuItem.Image = global::GeradorClasseMVC.Properties.Resources.edge;
             this.novoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.novoToolStripMenuItem.Name = "novoToolStripMenuItem";
             this.novoToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
@@ -92,7 +92,7 @@ namespace Gen
             // 
             // sobreToolStripMenuItem
             // 
-            this.sobreToolStripMenuItem.Image = global::Gen.Properties.Resources.help;
+            this.sobreToolStripMenuItem.Image = global::GeradorClasseMVC.Properties.Resources.help;
             this.sobreToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
             this.sobreToolStripMenuItem.Size = new System.Drawing.Size(108, 24);

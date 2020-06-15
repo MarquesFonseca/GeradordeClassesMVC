@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
-namespace Gen
+namespace GeradorClasseMVC
 {
     public partial class Principal : Form
     {

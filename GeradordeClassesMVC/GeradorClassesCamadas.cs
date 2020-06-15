@@ -13,7 +13,7 @@ using System.Linq;
 using GeradorClasses;
 using GeradorView;
 
-namespace Gen
+namespace GeradorClasseMVC
 {
     public partial class GeradorClassesCamadas : Form
     {

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Gen")]
+[assembly: AssemblyTitle("GeradorClasseMVC")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("osfederais")]
-[assembly: AssemblyProduct("Gen")]
+[assembly: AssemblyProduct("GeradorClasseMVC")]
 [assembly: AssemblyCopyright("Copyright © osfederais 2007")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

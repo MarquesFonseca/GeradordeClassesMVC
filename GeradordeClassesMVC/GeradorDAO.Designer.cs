@@ -1,4 +1,4 @@
-namespace Gen
+namespace GeradorClasseMVC
 {
     partial class GeradorDAO
     {

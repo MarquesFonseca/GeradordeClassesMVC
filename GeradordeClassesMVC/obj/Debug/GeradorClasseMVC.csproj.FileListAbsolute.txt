@@ -1,0 +1,11 @@
+C:\Projetos\GeradordeClassesMVC\GeradordeClassesMVC\obj\Debug\GeradorClasseMVC.GeradorClassesCamadas.resources
+C:\Projetos\GeradordeClassesMVC\GeradordeClassesMVC\obj\Debug\GeradorClasseMVC.GeradorDAO.resources
+C:\Projetos\GeradordeClassesMVC\GeradordeClassesMVC\obj\Debug\GeradorClasseMVC.Principal.resources
+C:\Projetos\GeradordeClassesMVC\GeradordeClassesMVC\obj\Debug\Gen.Properties.Resources.resources
+C:\Projetos\GeradordeClassesMVC\GeradordeClassesMVC\obj\Debug\GeradorClasseMVC.Sobre.resources
+C:\Projetos\GeradordeClassesMVC\GeradordeClassesMVC\obj\Debug\GeradorClasseMVC.csproj.GenerateResource.Cache
+C:\Projetos\GeradordeClassesMVC\GeradordeClassesMVC\obj\Debug\Gen.exe
+C:\Projetos\GeradordeClassesMVC\GeradordeClassesMVC\obj\Debug\Gen.pdb
+C:\Projetos\GeradordeClassesMVC\GeradordeClassesMVC\bin\Debug\Gen.exe.config
+C:\Projetos\GeradordeClassesMVC\GeradordeClassesMVC\bin\Debug\Gen.exe
+C:\Projetos\GeradordeClassesMVC\GeradordeClassesMVC\bin\Debug\Gen.pdb

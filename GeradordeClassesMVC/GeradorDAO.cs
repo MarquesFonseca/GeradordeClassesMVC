@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 
 
-namespace Gen
+namespace GeradorClasseMVC
 {
     public partial class GeradorDAO : Form
     {
