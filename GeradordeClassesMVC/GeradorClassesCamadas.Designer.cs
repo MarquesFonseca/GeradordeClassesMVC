@@ -238,7 +238,7 @@
             // btnLerBanco
             // 
             this.btnLerBanco.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLerBanco.Location = new System.Drawing.Point(688, 85);
+            this.btnLerBanco.Location = new System.Drawing.Point(691, 87);
             this.btnLerBanco.Name = "btnLerBanco";
             this.btnLerBanco.Size = new System.Drawing.Size(153, 46);
             this.btnLerBanco.TabIndex = 19;
@@ -277,7 +277,7 @@
             // btnConfiguracoesDal
             // 
             this.btnConfiguracoesDal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfiguracoesDal.Location = new System.Drawing.Point(583, 86);
+            this.btnConfiguracoesDal.Location = new System.Drawing.Point(691, 87);
             this.btnConfiguracoesDal.Name = "btnConfiguracoesDal";
             this.btnConfiguracoesDal.Size = new System.Drawing.Size(153, 46);
             this.btnConfiguracoesDal.TabIndex = 22;
@@ -317,7 +317,7 @@
             // btnConfiguracoesDto
             // 
             this.btnConfiguracoesDto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfiguracoesDto.Location = new System.Drawing.Point(583, 86);
+            this.btnConfiguracoesDto.Location = new System.Drawing.Point(691, 87);
             this.btnConfiguracoesDto.Name = "btnConfiguracoesDto";
             this.btnConfiguracoesDto.Size = new System.Drawing.Size(153, 46);
             this.btnConfiguracoesDto.TabIndex = 25;
@@ -367,7 +367,7 @@
             // btnConfiguracoesBll
             // 
             this.btnConfiguracoesBll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfiguracoesBll.Location = new System.Drawing.Point(583, 86);
+            this.btnConfiguracoesBll.Location = new System.Drawing.Point(691, 87);
             this.btnConfiguracoesBll.Name = "btnConfiguracoesBll";
             this.btnConfiguracoesBll.Size = new System.Drawing.Size(153, 46);
             this.btnConfiguracoesBll.TabIndex = 25;
@@ -421,7 +421,7 @@
             // btnConfiguracoesViews
             // 
             this.btnConfiguracoesViews.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfiguracoesViews.Location = new System.Drawing.Point(690, 86);
+            this.btnConfiguracoesViews.Location = new System.Drawing.Point(691, 87);
             this.btnConfiguracoesViews.Name = "btnConfiguracoesViews";
             this.btnConfiguracoesViews.Size = new System.Drawing.Size(153, 46);
             this.btnConfiguracoesViews.TabIndex = 27;
@@ -632,7 +632,7 @@
             // BtnConfiguracoesController
             // 
             this.BtnConfiguracoesController.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnConfiguracoesController.Location = new System.Drawing.Point(583, 86);
+            this.BtnConfiguracoesController.Location = new System.Drawing.Point(691, 87);
             this.BtnConfiguracoesController.Name = "BtnConfiguracoesController";
             this.BtnConfiguracoesController.Size = new System.Drawing.Size(153, 46);
             this.BtnConfiguracoesController.TabIndex = 28;
