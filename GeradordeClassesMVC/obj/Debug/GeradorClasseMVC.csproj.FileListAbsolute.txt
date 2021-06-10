@@ -9,3 +9,4 @@ C:\Projetos\GeradordeClassesMVC\GeradordeClassesMVC\obj\Debug\Gen.pdb
 C:\Projetos\GeradordeClassesMVC\GeradordeClassesMVC\bin\Debug\Gen.exe.config
 C:\Projetos\GeradordeClassesMVC\GeradordeClassesMVC\bin\Debug\Gen.exe
 C:\Projetos\GeradordeClassesMVC\GeradordeClassesMVC\bin\Debug\Gen.pdb
+C:\Projetos\GeradordeClassesMVC\GeradordeClassesMVC\obj\Debug\GeradorClasseMVC.csprojResolveAssemblyReference.cache

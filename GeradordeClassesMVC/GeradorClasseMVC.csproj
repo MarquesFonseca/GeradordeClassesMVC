@@ -96,6 +96,8 @@
     <Compile Include="ClassesGerador\GeradorView.cs" />
     <Compile Include="ClassesGerador\GeradorDTO.cs" />
     <Compile Include="ClassesGerador\Library.cs" />
+    <Compile Include="ClassesGerador\TipoBanco.cs" />
+    <Compile Include="ClassesGerador\TipoCampo.cs" />
     <Compile Include="Configuracao\Configs.cs" />
     <Compile Include="GeradorClassesCamadas.cs">
       <SubType>Form</SubType>
