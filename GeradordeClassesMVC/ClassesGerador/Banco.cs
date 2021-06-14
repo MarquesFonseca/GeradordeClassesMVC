@@ -9,25 +9,29 @@ namespace Banco
     public class Banco
     {
         // Atributos
-        private SqlConnection oConnection = null;
         private string connectionString = null;
-        private SqlDataAdapter oDataAdapter = null;
-        private SqlCommand oCommand = null;
-        private DataSet oDataSet = null;
+        private SqlConnection oConnection = null;
+
+        public TipoBanco TipoBanco { get; set; }
 
         //Construtor
-        public Banco(string strConn)
+        public Banco(TipoBanco TipoBD, string strConn)
         {
-            //strServidor = 
-            connectionString = strConn;
-            try
+            TipoBanco = TipoBD;
+            #region SqlServer
+            if (TipoBD == TipoBanco.SqlServer)
             {
-                oConnection = new SqlConnection(connectionString);
+                connectionString = strConn;
+                try
+                {
+                    oConnection = new SqlConnection(connectionString);
+                }
+                catch
+                {
+                    throw new Exception("Erro ao conectar com o banco. Verifica a string de conexão.");
+                }
             }
-            catch
-            {
-                throw new Exception("Erro ao conectar com o banco. Verifica a string de conexão.");
-            }
+            #endregion
         }
 
         //Métodos
@@ -40,34 +44,40 @@ namespace Banco
         public int ExecutaQuery(string sSQL)
         {
             int regAffect = 0;
-            try
-            {
-                oCommand = new SqlCommand(sSQL, oConnection);
-                if (oConnection.State == ConnectionState.Closed)
-                    oConnection.Open();
-                regAffect = oCommand.ExecuteNonQuery();
-                if (regAffect == 0)
-                {
-                    throw new Exception("Ocorreu um erro no comando sql, entre em contato com o administrador do sistema.");
-                }
-                else
-                {
-                    return regAffect;
-                }
 
-            }
-            catch (Exception err)
+            #region SqlServer
+            if (this.TipoBanco == TipoBanco.SqlServer)
             {
-                throw err;
-            }
-            finally
-            {
-                oConnection.Dispose();
-                oCommand.Dispose();
-            }
+                SqlCommand oCommand = new SqlCommand(sSQL, oConnection);
+                try
+                {
+                    if (oConnection.State == ConnectionState.Closed)
+                        oConnection.Open();
+                    regAffect = oCommand.ExecuteNonQuery();
+                    if (regAffect == 0)
+                    {
+                        throw new Exception("Ocorreu um erro no comando sql, entre em contato com o administrador do sistema.");
+                    }
+                    else
+                    {
+                        return regAffect;
+                    }
 
+                }
+                catch (Exception err)
+                {
+                    throw err;
+                }
+                finally
+                {
+                    oConnection.Dispose();
+                    oCommand.Dispose();
+                }
+            }
+            #endregion
+
+            return regAffect;
         }
-
 
         /// <summary>
         /// Retorna um valor
@@ -76,43 +86,51 @@ namespace Banco
         /// <returns>Object com o valor de retorna ExeculteScalar</returns>
         public object ExecultarScript(string Query)
         {
+            object temp = "";
             System.Collections.ArrayList NomeParametro = new System.Collections.ArrayList() { };
             System.Collections.ArrayList ValorParametro = new System.Collections.ArrayList() { };
 
-            System.Data.SqlClient.SqlConnection con = oConnection;
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand(Query, con);
+            #region SqlServer
+            if (TipoBanco == TipoBanco.SqlServer)
+            {
+                SqlConnection con = oConnection;
+                SqlCommand cmd = new System.Data.SqlClient.SqlCommand(Query, con);
+                try
+                {
+                    if (NomeParametro != null || ValorParametro != null)
+                    {
+                        for (int i = 0; i < NomeParametro.Count; i++)
+                        {
+                            cmd.Parameters.AddWithValue(NomeParametro[i].ToString(), ValorParametro[i]);
+                            //Console.Write("{0} ", lista[i]); 
+                        }
+                    }
 
-            if (NomeParametro != null || ValorParametro != null)
-            {
-                for (int i = 0; i < NomeParametro.Count; i++)
+                    con.Open();
+                    temp = cmd.ExecuteScalar();
+                    if (temp == null)
+                    {
+                        return "";
+                    }
+                    else
+                    {
+                        return temp;
+                    }
+                }
+                catch (Exception ex)
                 {
-                    cmd.Parameters.AddWithValue(NomeParametro[i].ToString(), ValorParametro[i]);
-                    //Console.Write("{0} ", lista[i]); 
+                    throw new Exception(" Problemas ao executar instrução T-SQL. " + ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                    con.Dispose();
+                    cmd.Dispose();
                 }
             }
-            try
-            {
-                con.Open();
-                object temp = cmd.ExecuteScalar();
-                if (temp == null)
-                {
-                    return "";
-                }
-                else
-                {
-                    return temp;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(" Problemas ao executar instrução T-SQL. " + ex.Message);
-            }
-            finally
-            {
-                con.Close();
-                con.Dispose();
-                cmd.Dispose();
-            }
+            #endregion
+
+            return temp;
         }
 
         /// <summary>
@@ -121,29 +139,35 @@ namespace Banco
         /// <param name="command">Comando sql</param>
         /// <param name="table">Nome da tabela</param>
         /// <returns>DataSet oDataSet</returns>
-
         public DataSet GetDataSet(string command, string table)
         {
-            try
-            {
+            DataSet oDataSet = new DataSet();
 
+            #region SqlServer
+            if (TipoBanco == TipoBanco.SqlServer)
+            {
                 oConnection.Open();
-                oCommand = new SqlCommand(command, oConnection);
-                oDataAdapter = new SqlDataAdapter(oCommand);
-                oDataSet = new DataSet();
-                oDataAdapter.Fill(oDataSet, table);
-                return oDataSet;
+                SqlCommand oCommand = new SqlCommand(command, oConnection);
+                SqlDataAdapter oDataAdapter = new SqlDataAdapter(oCommand);
+                try
+                {
+                    oDataAdapter.Fill(oDataSet, table);
+                    return oDataSet;
+                }
+                catch (SqlException err)
+                {
+                    throw err;
+                }
+                finally
+                {
+                    oConnection.Dispose();
+                    oCommand.Dispose();
+                    oDataAdapter.Dispose();
+                }
             }
-            catch (SqlException err)
-            {
-                throw err;
-            }
-            finally
-            {
-                oConnection.Dispose();
-                oCommand.Dispose();
-                oDataAdapter.Dispose();
-            }
+            #endregion
+
+            return oDataSet;
         }
 
         /// <summary>
@@ -153,21 +177,30 @@ namespace Banco
         /// <returns>DataReader oCommand.ExecuteReader()</returns>
         public SqlDataReader QueryConsulta(string command)
         {
-            try
+            SqlCommand oCommand = new SqlCommand(command, oConnection);
+
+            #region SqlServer
+            if (TipoBanco == TipoBanco.SqlServer)
             {
-                oConnection.Open();
-                oCommand = new SqlCommand(command, oConnection);
-                return oCommand.ExecuteReader();
+                try
+                {
+                    oConnection.Open();
+                    return oCommand.ExecuteReader();
+                }
+                catch (Exception err)
+                {
+                    return oCommand.ExecuteReader();
+                    //throw err;
+                }
+                finally
+                {
+                    //oConnection.Dispose();
+                    //oCommand.Dispose();
+                }
             }
-            catch (Exception err)
-            {
-                throw err;
-            }
-            finally
-            {
-                //oConnection.Dispose();
-                //oCommand.Dispose();
-            }
+            #endregion
+
+            return oCommand.ExecuteReader();
         }
 
         public void CloseConn()
@@ -177,56 +210,66 @@ namespace Banco
 
         public object RetornaValor(string Query, System.Collections.ArrayList NomeParametro, System.Collections.ArrayList ValorParametro, string StringConexao)
         {
-            object Retorno;
+            object Retorno = "";
 
-            SqlConnection con = new SqlConnection(StringConexao);
-            SqlCommand cmd = new SqlCommand(Query, con);
-            for (int i = 0; i < NomeParametro.Count; i++)
+            #region SqlServer
+            if (TipoBanco == TipoBanco.SqlServer)
             {
-                cmd.Parameters.AddWithValue(NomeParametro[i].ToString(), ValorParametro[i]);
-                //Console.Write("{0} ", lista[i]); 
-            }
-            try
-            {
-                con.Open();
+                SqlConnection con = new SqlConnection(StringConexao);
+                SqlCommand cmd = new SqlCommand(Query, con);
+                for (int i = 0; i < NomeParametro.Count; i++)
+                {
+                    cmd.Parameters.AddWithValue(NomeParametro[i].ToString(), ValorParametro[i]);
+                    //Console.Write("{0} ", lista[i]); 
+                }
+                try
+                {
+                    con.Open();
 
-                Retorno = cmd.ExecuteScalar();
+                    Retorno = cmd.ExecuteScalar();
+                }
+                finally
+                {
+                    con.Close();
+                    con.Dispose();
+                    cmd.Dispose();
+                }
             }
-            finally
-            {
-                con.Close();
-                con.Dispose();
-                cmd.Dispose();
-            }
+            #endregion
+
             return Retorno;
-
         }
-        
+
         public object RetornaValor(string Query, System.Collections.ArrayList NomeParametro, System.Collections.ArrayList ValorParametro)
         {
-            object Retorno;
+            object Retorno = "";
 
-            SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand(Query, con);
-            for (int i = 0; i < NomeParametro.Count; i++)
+            #region SqlServer
+            if (TipoBanco == TipoBanco)
             {
-                cmd.Parameters.AddWithValue(NomeParametro[i].ToString(), ValorParametro[i]);
-                //Console.Write("{0} ", lista[i]); 
-            }
-            try
-            {
-                con.Open();
+                SqlConnection con = new SqlConnection(connectionString);
+                SqlCommand cmd = new SqlCommand(Query, con);
+                for (int i = 0; i < NomeParametro.Count; i++)
+                {
+                    cmd.Parameters.AddWithValue(NomeParametro[i].ToString(), ValorParametro[i]);
+                    //Console.Write("{0} ", lista[i]); 
+                }
+                try
+                {
+                    con.Open();
 
-                Retorno = cmd.ExecuteScalar();
+                    Retorno = cmd.ExecuteScalar();
+                }
+                finally
+                {
+                    con.Close();
+                    con.Dispose();
+                    cmd.Dispose();
+                }
             }
-            finally
-            {
-                con.Close();
-                con.Dispose();
-                cmd.Dispose();
-            }
+            #endregion
+
             return Retorno;
-
         }
     }
 }

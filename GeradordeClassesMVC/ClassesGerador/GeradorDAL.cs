@@ -118,7 +118,6 @@ namespace GeradorDO
             objCodigo.AppendLine(tb + tb + "/// <returns>DataSet oDataSet</returns>");
             objCodigo.AppendLine(tb + tb + "public DataSet GetDataSet(string command, string table)");
             objCodigo.AppendLine(tb + tb + "{");
-            objCodigo.AppendLine();
             objCodigo.AppendLine(tb + tb + tb + "try");
             objCodigo.AppendLine(tb + tb + tb + "{");
             objCodigo.AppendLine(tb + tb + tb + tb + "oConnection.Open();");

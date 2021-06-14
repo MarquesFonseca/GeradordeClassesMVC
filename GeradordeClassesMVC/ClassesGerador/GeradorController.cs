@@ -72,7 +72,7 @@ namespace GeradorController
             string tabelaMinusculoBO = cultureinfo.TextInfo.ToTitleCase(tabelaFormatada) + "BO";//tabelaBO
 
             // Abre conexão com o banco
-            objBanco = new Banco.Banco(_conexao);
+            objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
             // Cria o objeto da classe Library
             objLib = new Library.Library();
 
@@ -102,7 +102,7 @@ namespace GeradorController
 
             #region Details
             // Abre conexão
-            objBanco = new Banco.Banco(_conexao);
+            objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
             // Faz a leitura de todas as colunas da tabela
             objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
             nunrec = objDr.FieldCount;
@@ -172,7 +172,7 @@ namespace GeradorController
 
             #region Create
             // Abre conexão
-            objBanco = new Banco.Banco(_conexao);
+            objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
             // Faz a leitura de todas as colunas da tabela
             objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
             nunrec = objDr.FieldCount;
@@ -261,7 +261,7 @@ namespace GeradorController
 
             #region Edit
             // Abre conexão
-            objBanco = new Banco.Banco(_conexao);
+            objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
             // Faz a leitura de todas as colunas da tabela
             objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
             nunrec = objDr.FieldCount;
@@ -298,7 +298,7 @@ namespace GeradorController
 
             #region Edit
             // Abre conexão
-            objBanco = new Banco.Banco(_conexao);
+            objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
             // Faz a leitura de todas as colunas da tabela
             objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
             nunrec = objDr.FieldCount;
@@ -378,7 +378,7 @@ namespace GeradorController
 
             #region Delete
             // Abre conexão
-            objBanco = new Banco.Banco(_conexao);
+            objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
             // Faz a leitura de todas as colunas da tabela
             objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
             nunrec = objDr.FieldCount;
@@ -474,7 +474,7 @@ namespace GeradorController
             WHERE KCU1.TABLE_NAME = '{0}'
             ", nomeTabela);
 
-            Banco.Banco objBanco = new Banco.Banco(conexao);
+            Banco.Banco objBanco = new Banco.Banco(TipoBanco.SqlServer, conexao);
             DataSet retorno = objBanco.GetDataSet(sql, nomeTabela);
 
             for (int i = 0; i < retorno.Tables[0].Rows.Count; i++)
@@ -530,7 +530,7 @@ namespace GeradorController
             WHERE KCU1.TABLE_NAME = '{0}'
             ", nomeTabela);
 
-            Banco.Banco objBanco = new Banco.Banco(conexao);
+            Banco.Banco objBanco = new Banco.Banco(TipoBanco.SqlServer, conexao);
             DataSet retorno = objBanco.GetDataSet(sql, nomeTabela);
 
             for (int i = 0; i < retorno.Tables[0].Rows.Count; i++)
@@ -586,7 +586,7 @@ namespace GeradorController
             WHERE KCU1.TABLE_NAME = '{0}'
             ", nomeTabela);
 
-            Banco.Banco objBanco = new Banco.Banco(conexao);
+            Banco.Banco objBanco = new Banco.Banco(TipoBanco.SqlServer, conexao);
             DataSet retorno = objBanco.GetDataSet(sql, nomeTabela);
 
             for (int i = 0; i < retorno.Tables[0].Rows.Count; i++)

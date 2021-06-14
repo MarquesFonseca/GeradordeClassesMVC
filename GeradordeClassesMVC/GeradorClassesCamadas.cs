@@ -64,6 +64,10 @@ namespace GeradorClasseMVC
             if ((txtServidor.Text.Trim() != "") || (txtBanco.Text.Trim() != ""))
             {
                 // Monta a string de conexão
+                txtServidor.Text = txtServidor.Text.Contains("Erro no leitura do Registro.") ? "" : txtServidor.Text;
+                txtBanco.Text = txtBanco.Text.Contains("Erro no leitura do Registro.") ? "" : txtBanco.Text;
+                txtUsuario.Text = txtUsuario.Text.Contains("Erro no leitura do Registro.") ? "" : txtUsuario.Text;
+
                 strConnstring = new StringBuilder();
                 strConnstring.Append("Data Source=" + txtServidor.Text.Replace("'", "") + ";");
                 strConnstring.Append("Initial Catalog=" + txtBanco.Text.Replace("'", "") + ";");
@@ -82,7 +86,7 @@ namespace GeradorClasseMVC
                 // Conecta com o banco
                 try
                 {
-                    objBanco = new Banco.Banco(strConnstring.ToString());
+                    objBanco = new Banco.Banco(TipoBanco.SqlServer, strConnstring.ToString());
 
                     try
                     {

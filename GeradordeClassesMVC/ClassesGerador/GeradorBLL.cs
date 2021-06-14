@@ -83,7 +83,7 @@ namespace GeradorBLL
             // pega todas as colunas da tabela
 
             // Abre conexão
-            objBanco = new Banco.Banco(_conexao);
+            objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
             // Faz a leitura de todas as colunas da tabela
             objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
 
@@ -142,7 +142,7 @@ namespace GeradorBLL
             // pega todas as colunas da tabela
 
             // Abre conexão
-            objBanco = new Banco.Banco(_conexao);
+            objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
             // Faz a leitura de todas as colunas da tabela
             objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
 
@@ -202,7 +202,7 @@ namespace GeradorBLL
             // pega todas as colunas da tabela
 
             // Abre conexão
-            objBanco = new Banco.Banco(_conexao);
+            objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
             // Faz a leitura de todas as colunas da tabela
             objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
 
@@ -259,7 +259,7 @@ namespace GeradorBLL
             // pega todas as colunas da tabela
 
             // Abre conexão
-            objBanco = new Banco.Banco(_conexao);
+            objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
             // Faz a leitura de todas as colunas da tabela
             objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
 
@@ -318,7 +318,7 @@ namespace GeradorBLL
             // pega todas as colunas da tabela
 
             // Abre conexão
-            objBanco = new Banco.Banco(_conexao);
+            objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
             // Faz a leitura de todas as colunas da tabela
             objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
 
@@ -378,7 +378,7 @@ namespace GeradorBLL
             // pega todas as colunas da tabela
 
             // Abre conexão
-            objBanco = new Banco.Banco(_conexao);
+            objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
             // Faz a leitura de todas as colunas da tabela
             objDr = objBanco.QueryConsulta(" SELECT * FROM " + strTabela);
 
@@ -426,7 +426,7 @@ namespace GeradorBLL
             // pega todas as colunas da tabela
 
             // Abre conexão
-            objBanco = new Banco.Banco(_conexao);
+            objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
             // Faz a leitura de todas as colunas da tabela
             objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
             // Objeto da clase library
@@ -556,7 +556,7 @@ namespace GeradorBLL
             // pega todas as colunas da tabela
 
             // Abre conexão
-            objBanco = new Banco.Banco(_conexao);
+            objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
             // Faz a leitura de todas as colunas da tabela
             objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
 
@@ -637,7 +637,7 @@ namespace GeradorBLL
             objCodigo.AppendLine(tb + tb + tb + tb + "strSql.Append(\" SET \"); ");
 
             // Abre conexão
-            objBanco = new Banco.Banco(_conexao);
+            objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
             // Faz a leitura de todas as colunas da tabela
             objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
             // Cria o objeto da classe Library
@@ -728,7 +728,7 @@ namespace GeradorBLL
             objCodigo.AppendLine(tb + tb + tb + tb + "strSql.Append(\" DELETE FROM " + strTabela + "  \"); ");
 
             // Abre conexão
-            objBanco = new Banco.Banco(_conexao);
+            objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
             // Faz a leitura de todas as colunas da tabela
             objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
 

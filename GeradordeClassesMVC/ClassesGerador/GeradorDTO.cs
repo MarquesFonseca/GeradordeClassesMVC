@@ -50,7 +50,7 @@ namespace GeradorDTO
 
             string tabelaFormatada = strTabela.Replace("_", "").Replace("-", "");
             // Abre conexão com o banco
-            objBanco = new Banco.Banco(_conexao);
+            objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
             // Cria o objeto da classe Library
             objLib = new Library.Library();
 
