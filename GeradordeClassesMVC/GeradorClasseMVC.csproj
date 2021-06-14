@@ -8,8 +8,8 @@
     <ProjectGuid>{BF22745E-D3E1-48AE-85B1-A65BAF7C57F1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Gen</RootNamespace>
-    <AssemblyName>Gen</AssemblyName>
+    <RootNamespace>GeradorClasseMVC</RootNamespace>
+    <AssemblyName>GeradorClasseMVC</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -69,6 +69,9 @@
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>GeradorClasseMVC.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -87,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arquivos\Arquivos.cs" />
+    <Compile Include="Arquivos\ArquivoXML.cs" />
     <Compile Include="Arquivos\Registro.cs" />
     <Compile Include="ClassesGerador\Atributos.cs" />
     <Compile Include="ClassesGerador\Banco.cs" />

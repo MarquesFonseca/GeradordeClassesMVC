@@ -1,0 +1,47 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Config>
+    <Chave>txtServidor</Chave>
+    <Valor>MARQUES-PC\SQLEXPRESS</Valor>
+  </Config>
+  <Config>
+    <Chave>txtBanco</Chave>
+    <Valor>BANCOTESTE</Valor>
+  </Config>
+  <Config>
+    <Chave>txtUsuario</Chave>
+    <Valor />
+  </Config>
+  <Config>
+    <Chave>txtSenha</Chave>
+    <Valor />
+  </Config>
+  <Config>
+    <Chave>ckAutentica</Chave>
+    <Valor>1</Valor>
+  </Config>
+  <Config>
+    <Chave>TxtDiretorioDal</Chave>
+    <Valor>C:\Projetos\GeradordeClassesMVC\Lixo_Apagar_Resultado_Teste_Apenas</Valor>
+  </Config>
+  <Config>
+    <Chave>TxtDiretorioDto</Chave>
+    <Valor>C:\Projetos\GeradordeClassesMVC\Lixo_Apagar_Resultado_Teste_Apenas</Valor>
+  </Config>
+  <Config>
+    <Chave>TxtDiretorioBll</Chave>
+    <Valor>C:\Projetos\GeradordeClassesMVC\Lixo_Apagar_Resultado_Teste_Apenas</Valor>
+  </Config>
+  <Config>
+    <Chave>TxtDiretorioView</Chave>
+    <Valor>C:\Projetos\GeradordeClassesMVC\Lixo_Apagar_Resultado_Teste_Apenas</Valor>
+  </Config>
+  <Config>
+    <Chave>TxtDiretorioControlller</Chave>
+    <Valor>C:\Projetos\GeradordeClassesMVC\Lixo_Apagar_Resultado_Teste_Apenas</Valor>
+  </Config>
+  <Config>
+    <Chave>TxtNameSpaceProjeto</Chave>
+    <Valor>BancoTeste</Valor>
+  </Config>
+</DocumentElement>

@@ -122,7 +122,7 @@ namespace GeradorView
 
                     #region Loop Colunas
                     // Abre conexão com o banco
-                    objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
+                    objBanco = new Banco.Banco(_conexao);
                     // Cria o objeto da classe Library
                     objLib = new Library.Library();
                     // Faz a leitura de todas as colunas da tabela
@@ -170,7 +170,7 @@ namespace GeradorView
 
                     #region Loop Linhas
                     // Abre conexão com o banco
-                    objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
+                    objBanco = new Banco.Banco(_conexao);
                     // Cria o objeto da classe Library
                     objLib = new Library.Library();
                     // Faz a leitura de todas as colunas da tabela
@@ -419,7 +419,7 @@ namespace GeradorView
 
                     #region Loop Colunas
                     // Abre conexão com o banco
-                    objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
+                    objBanco = new Banco.Banco(_conexao);
                     // Cria o objeto da classe Library
                     objLib = new Library.Library();
                     // Faz a leitura de todas as colunas da tabela
@@ -543,7 +543,7 @@ namespace GeradorView
 
                     #region Loop Colunas
                     // Abre conexão com o banco
-                    objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
+                    objBanco = new Banco.Banco(_conexao);
                     // Cria o objeto da classe Library
                     objLib = new Library.Library();
                     // Faz a leitura de todas as colunas da tabela
@@ -684,7 +684,7 @@ namespace GeradorView
 
                     #region Loop Colunas
                     // Abre conexão com o banco
-                    objBanco = new Banco.Banco(TipoBanco.SqlServer, _conexao);
+                    objBanco = new Banco.Banco(_conexao);
                     // Cria o objeto da classe Library
                     objLib = new Library.Library();
                     // Faz a leitura de todas as colunas da tabela

@@ -51,13 +51,43 @@ namespace GeradorClasseMVC
             btnLerBanco_Click(null, null);
         }
 
+        private void btnLerBanco_Click(object sender, EventArgs e)
+        {
+            btnLerBanco.Enabled = false;
+            ListaTabelas();
+            if (lstTabelas.Items.Count > 0)
+            {
+                txtPesquisarTabelas.Focus();
+                //lstTabelas.SelectedIndex = 0;
+                GravaConfiguracoes();
+            }
+            else
+            {
+                txtServidor.Focus();
+            }
+            btnLerBanco.Enabled = true;
+
+
+
+
+            // Faz a leitura de todas as colunas com seus atributos
+            //_bindingsourceMapeamento.DataSource = ExecutorSql.ExecultarSelect_GerarMapeamento(lstTabelas.SelectedItem.ToString());
+            //classeSelecionada = lstTabelas.SelectedItem.ToString();
+            //campoTabelaChaveEstrangeira = new Dictionary<int, string>();
+            //dataGridViewMapeamento.Columns[1].Frozen = true;
+
+            //LblMensagemTabela.Text = "&Propriedades da tabela: " + classeSelecionada;
+        }
+
         private void ListaTabelas()
         {
             //for (int i = 0; i < lstTabelas.Items.Count; i++)
             //{
             //    lstTabelas.Items.RemoveAt();
             //}
-            //lstTabelas.Items.Clear();
+            if (lstTabelas != null)
+                lstTabelas.Items.Clear();
+
             listaTabelasGeral = new List<string>();
             _bindingsourceTabelas = new BindingSource();
 
@@ -67,6 +97,7 @@ namespace GeradorClasseMVC
                 txtServidor.Text = txtServidor.Text.Contains("Erro no leitura do Registro.") ? "" : txtServidor.Text;
                 txtBanco.Text = txtBanco.Text.Contains("Erro no leitura do Registro.") ? "" : txtBanco.Text;
                 txtUsuario.Text = txtUsuario.Text.Contains("Erro no leitura do Registro.") ? "" : txtUsuario.Text;
+                txtSenha.Text = txtSenha.Text.Contains("Erro no leitura do Registro.") ? "" : txtSenha.Text;
 
                 strConnstring = new StringBuilder();
                 strConnstring.Append("Data Source=" + txtServidor.Text.Replace("'", "") + ";");
@@ -86,7 +117,13 @@ namespace GeradorClasseMVC
                 // Conecta com o banco
                 try
                 {
-                    objBanco = new Banco.Banco(TipoBanco.SqlServer, strConnstring.ToString());
+                    if (strConnstring.ToString().Contains("Data Source=;Initial Catalog=;Integrated Security=True;"))
+                    {
+                        //Configurações de banco vazia... não tem conexao...
+                        txtServidor.Focus();
+                        return;
+                    }
+                    objBanco = new Banco.Banco(strConnstring.ToString());
 
                     try
                     {
@@ -125,61 +162,40 @@ namespace GeradorClasseMVC
             }
         }
 
-        private void btnLerBanco_Click(object sender, EventArgs e)
-        {
-            btnLerBanco.Enabled = false;
-            ListaTabelas();
-            txtPesquisarTabelas.Focus();
-            if (lstTabelas.Items.Count > 0)
-                //lstTabelas.SelectedIndex = 0;
-                GravaConfiguracoes();
-            btnLerBanco.Enabled = true;
-
-
-
-
-            // Faz a leitura de todas as colunas com seus atributos
-            //_bindingsourceMapeamento.DataSource = ExecutorSql.ExecultarSelect_GerarMapeamento(lstTabelas.SelectedItem.ToString());
-            //classeSelecionada = lstTabelas.SelectedItem.ToString();
-            //campoTabelaChaveEstrangeira = new Dictionary<int, string>();
-            //dataGridViewMapeamento.Columns[1].Frozen = true;
-
-            //LblMensagemTabela.Text = "&Propriedades da tabela: " + classeSelecionada;
-        }
-
         private void RetornaConfig()
         {
             #region Aba Conexao
-            txtServidor.Text = Arquivos.Registro.Registro.LerRegistro(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "txtServidor");
-            txtBanco.Text = Arquivos.Registro.Registro.LerRegistro(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "txtBanco");
-            txtUsuario.Text = Arquivos.Registro.Registro.LerRegistro(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "txtUsuario");
-            txtSenha.Text = Arquivos.Registro.Registro.LerRegistro(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "txtSenha");
-            string ckAutenticaRetornado = Arquivos.Registro.Registro.LerRegistro(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "ckAutentica");
+            string ckAutenticaRetornado = GeradorClasses.Arquivos.RetornaItemArquivoConfigConexao("Config", "ckAutentica");
             if (ckAutenticaRetornado == "" || ckAutenticaRetornado == "0")
                 ckAutentica.Checked = false;
             if (ckAutenticaRetornado == "1")
                 ckAutentica.Checked = true;
+
+            txtServidor.Text = GeradorClasses.Arquivos.RetornaItemArquivoConfigConexao("Config", "txtServidor");
+            txtBanco.Text = GeradorClasses.Arquivos.RetornaItemArquivoConfigConexao("Config", "txtBanco");
+            txtUsuario.Text = GeradorClasses.Arquivos.RetornaItemArquivoConfigConexao("Config", "txtUsuario");
+            txtSenha.Text = GeradorClasses.Arquivos.RetornaItemArquivoConfigConexao("Config", "txtSenha");
             #endregion
 
             #region Aba DAL
-            TxtDiretorioDal.Text = Arquivos.Registro.Registro.LerRegistro(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "TxtDiretorioDal");
+            TxtDiretorioDal.Text = GeradorClasses.Arquivos.RetornaItemArquivoConfigConexao("Config", "TxtDiretorioDal");
             #endregion
 
             #region Aba DTO
-            TxtDiretorioDto.Text = Arquivos.Registro.Registro.LerRegistro(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "TxtDiretorioDto");
+            TxtDiretorioDto.Text = GeradorClasses.Arquivos.RetornaItemArquivoConfigConexao("Config", "TxtDiretorioDto");
             #endregion
 
             #region Aba BLL
-            TxtDiretorioBll.Text = Arquivos.Registro.Registro.LerRegistro(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "TxtDiretorioBll");
+            TxtDiretorioBll.Text = GeradorClasses.Arquivos.RetornaItemArquivoConfigConexao("Config", "TxtDiretorioBll");
             #endregion
 
             #region Aba View
-            TxtDiretorioView.Text = Arquivos.Registro.Registro.LerRegistro(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "TxtDiretorioView");
+            TxtDiretorioView.Text = GeradorClasses.Arquivos.RetornaItemArquivoConfigConexao("Config", "TxtDiretorioView");
             #endregion
 
             #region Aba Controller
-            TxtDiretorioControlller.Text = Arquivos.Registro.Registro.LerRegistro(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "TxtDiretorioControlller");
-            TxtNameSpaceProjeto.Text = Arquivos.Registro.Registro.LerRegistro(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "TxtNameSpaceProjeto");
+            TxtDiretorioControlller.Text = GeradorClasses.Arquivos.RetornaItemArquivoConfigConexao("Config", "TxtDiretorioControlller");
+            TxtNameSpaceProjeto.Text = GeradorClasses.Arquivos.RetornaItemArquivoConfigConexao("Config", "TxtNameSpaceProjeto");
             #endregion
         }
 
@@ -188,37 +204,35 @@ namespace GeradorClasseMVC
             //Grava o diretorio para gerar as classes.
             #region Aba Conexao
 
-            //Arquivos.Registro.Registro.LerRegistro(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "
-            //Arquivos.Registro.Registro.CriarChaveRegedit(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "txtServidor", "");
-            Arquivos.Registro.Registro.CriarChaveRegedit(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "txtServidor", txtServidor.Text);
-            Arquivos.Registro.Registro.CriarChaveRegedit(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "txtBanco", txtBanco.Text);
-            Arquivos.Registro.Registro.CriarChaveRegedit(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "txtUsuario", txtUsuario.Text);
-            Arquivos.Registro.Registro.CriarChaveRegedit(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "txtSenha", txtSenha.Text);
+            GeradorClasses.Arquivos.GeraArquivoConfigConexao("Config", "txtServidor", txtServidor.Text);
+            GeradorClasses.Arquivos.GeraArquivoConfigConexao("Config", "txtBanco", txtBanco.Text);
+            GeradorClasses.Arquivos.GeraArquivoConfigConexao("Config", "txtUsuario", txtUsuario.Text);
+            GeradorClasses.Arquivos.GeraArquivoConfigConexao("Config", "txtSenha", txtSenha.Text);
             if (ckAutentica.Checked == false)
-                Arquivos.Registro.Registro.CriarChaveRegedit(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "ckAutentica", "0");
+                GeradorClasses.Arquivos.GeraArquivoConfigConexao("Config", "ckAutentica", "0");
             if (ckAutentica.Checked == true)
-                Arquivos.Registro.Registro.CriarChaveRegedit(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "ckAutentica", "1");
+                GeradorClasses.Arquivos.GeraArquivoConfigConexao("Config", "ckAutentica", "1");
             #endregion
 
             #region Aba DAL
-            Arquivos.Registro.Registro.CriarChaveRegedit(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "TxtDiretorioDal", TxtDiretorioDal.Text);
+            GeradorClasses.Arquivos.GeraArquivoConfigConexao("Config", "TxtDiretorioDal", TxtDiretorioDal.Text);
             #endregion
 
             #region Aba DTO
-            Arquivos.Registro.Registro.CriarChaveRegedit(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "TxtDiretorioDto", TxtDiretorioDto.Text);
+            GeradorClasses.Arquivos.GeraArquivoConfigConexao("Config", "TxtDiretorioDto", TxtDiretorioDto.Text);
             #endregion
 
             #region Aba BLL
-            Arquivos.Registro.Registro.CriarChaveRegedit(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "TxtDiretorioBll", TxtDiretorioBll.Text);
+            GeradorClasses.Arquivos.GeraArquivoConfigConexao("Config", "TxtDiretorioBll", TxtDiretorioBll.Text);
             #endregion
 
             #region Aba View
-            Arquivos.Registro.Registro.CriarChaveRegedit(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "TxtDiretorioView", TxtDiretorioView.Text);
+            GeradorClasses.Arquivos.GeraArquivoConfigConexao("Config", "TxtDiretorioView", TxtDiretorioDal.Text);
             #endregion
 
             #region Aba Controller
-            Arquivos.Registro.Registro.CriarChaveRegedit(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "TxtDiretorioControlller", TxtDiretorioControlller.Text);
-            Arquivos.Registro.Registro.CriarChaveRegedit(Arquivos.Registro.Registro.RaizRegistro.HKEY_CURRENT_CONFIG, "Software\\TinsWeb\\GeradorClasses", "TxtNameSpaceProjeto", TxtNameSpaceProjeto.Text);
+            GeradorClasses.Arquivos.GeraArquivoConfigConexao("Config", "TxtDiretorioControlller", TxtDiretorioControlller.Text);
+            GeradorClasses.Arquivos.GeraArquivoConfigConexao("Config", "TxtNameSpaceProjeto", TxtNameSpaceProjeto.Text);
             #endregion
         }
 
@@ -445,6 +459,21 @@ namespace GeradorClasseMVC
         private void lstTabelas_Click(object sender, EventArgs e)
         {
             object selecionado = lstTabelas.SelectedItem;
+        }
+
+        private void ckAutentica_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckAutentica.Checked)
+            {
+                txtUsuario.Text = txtSenha.Text = "";
+                txtUsuario.Enabled = txtSenha.Enabled = false;
+            }
+            else
+            {
+                txtUsuario.Text = GeradorClasses.Arquivos.RetornaItemArquivoConfigConexao("Config", "txtUsuario");
+                txtSenha.Text = GeradorClasses.Arquivos.RetornaItemArquivoConfigConexao("Config", "txtSenha");
+                txtUsuario.Enabled = txtSenha.Enabled = true;
+            }
         }
     }
 }

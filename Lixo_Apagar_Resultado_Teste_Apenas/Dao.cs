@@ -9,7 +9,7 @@ namespace DAL
       /// <summary>
       /// Classe DAL gerada automática
       /// Criador: MARQUES
-      /// Criada em 11/06/2021 às 13:08
+      /// Criada em 14/06/2021 às 18:07
       /// </summary>
       public class Dao
       {
@@ -26,7 +26,7 @@ namespace DAL
             {
             //connectionString = @"Data Source=subtuum.ddns.net;Initial Catalog=camara;User ID=sa;Password=s3nh406#;
             //connectionString = @"Data Source=192.168.0.200;Initial Catalog=camara;User ID=sa;Password=s3nh406#;
-                  connectionString = @"Data Source=MARQUES-PC\SQLEXPRESS;Initial Catalog=MASTER;Integrated Security=True;";
+                  connectionString = @"Data Source=MARQUES-PC\SQLEXPRESS;Initial Catalog=BANCOTESTE;Integrated Security=True;";
                   oConnection = new SqlConnection(connectionString);
             }
 
@@ -266,7 +266,7 @@ namespace DAL
       /// <summary>
       /// Classe DAL "Genérica" gerada automática 
       /// Criador: Marques Silva Fonseca
-      /// Criada em 11/06/2021 às 13:08
+      /// Criada em 14/06/2021 às 18:07
       /// Contato: marques-fonseca@hotmail.com
       /// </summary>
       public class Dao<T>

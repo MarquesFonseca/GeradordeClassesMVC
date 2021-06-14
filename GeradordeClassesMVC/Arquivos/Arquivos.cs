@@ -6,6 +6,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Collections;
+using System.Data;
 
 namespace GeradorClasses
 {
@@ -289,7 +290,7 @@ namespace GeradorClasses
         {
             try
             {
-                
+
                 if (!caminho.Substring(caminho.Length - 1, 0).Contains("\\"))
                     caminho = caminho + "\\";
 
@@ -311,6 +312,80 @@ namespace GeradorClasses
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+
+        public static void GeraArquivoConfigConexao(string nomeArquivo, string nomeChave, string valorChave)
+        {
+            string curDir = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory.ToString());
+
+            System.Data.DataTable dtArquivoExistente = ArquivoXML.AbrirArquivoXML(curDir, nomeArquivo);
+
+            if (dtArquivoExistente == null || dtArquivoExistente.Rows.Count == 0)
+            {
+                System.Data.DataTable dt = new System.Data.DataTable("Config");
+                dt.Columns.Add("Chave", typeof(string));
+                dt.Columns.Add("Valor", typeof(string));
+                System.Data.DataRow dr = dt.NewRow();
+
+                #region Linha
+                dr["Chave"] = nomeChave;
+                dr["Valor"] = valorChave;
+                dt.Rows.Add(dr);
+                #endregion
+
+                ArquivoXML.GravaArquivoXML(dt, curDir, nomeArquivo);
+            }
+            else
+            {
+                System.Data.DataRow dr = dtArquivoExistente.NewRow();
+                var existe = dtArquivoExistente.AsEnumerable().Any(M => M["Chave"].ToString() == nomeChave);
+                if (existe)
+                {
+                    foreach (DataRow item in dtArquivoExistente.Rows)
+                    {
+                        if (item["Chave"].ToString() == nomeChave)//existe
+                        {
+                            #region Linha
+                            item["Chave"] = nomeChave;
+                            item["Valor"] = valorChave;
+                            #endregion
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    #region Linha
+                    dr["Chave"] = nomeChave;
+                    dr["Valor"] = valorChave;
+                    dtArquivoExistente.Rows.Add(dr);
+                    #endregion
+                }
+
+                ArquivoXML.GravaArquivoXML(dtArquivoExistente, curDir, nomeArquivo);
+            }
+        }
+
+        public static string RetornaItemArquivoConfigConexao(string nomeArquivo, string nomeChave)
+        {
+            string retorno = "";
+            string curDir = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory.ToString());
+            System.Data.DataTable dtArquivoExistente = ArquivoXML.AbrirArquivoXML(curDir, nomeArquivo);
+            if (dtArquivoExistente == null || dtArquivoExistente.Rows.Count == 0)
+            {
+                //não existe
+                retorno = "";
+            }
+            else
+            {
+                var existe = dtArquivoExistente.AsEnumerable().Any(M => M["Chave"].ToString() == nomeChave);
+                if (existe)
+                {
+                    retorno = dtArquivoExistente.AsEnumerable().FirstOrDefault(M => M["Chave"].ToString() == nomeChave)["Valor"].ToString();
+                }
+            }
+            return retorno;
         }
     }
 }

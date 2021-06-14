@@ -61,7 +61,7 @@ namespace GeradorClasseMVC
                 // Conecta com o banco
                 try
                 {
-                    objBanco = new Banco.Banco(TipoBanco.SqlServer, strConnstring.ToString());
+                    objBanco = new Banco.Banco(strConnstring.ToString());
 
                     try
                     {

@@ -1,0 +1,120 @@
+﻿@model DTO.TabTabelaTeste                                                                                                                                             
+@{                                                                                                                                                                                            
+    ViewBag.Title = "Detalhes do cadastro de TabelaTeste";                                                                                                                                  
+    Layout = "~/Views/Shared/_Layout.cshtml";                                                                                                                                               
+}                                                                                                                                                                                             
+<!-- MAIN CONTENT -->                                                                                                                                                                         
+<div id="content">                                                                                                                                                                          
+    <div class="row">                                                                                                                                                                       
+        <div class="col-sm-12 col-md-12 col-lg-12">                                                                                                                                         
+            <h1 class="page-title txt-color-blueDark">                                                                                                                                      
+                <i class="fa fa-edit fa-fw "></i>                                                                                                                                           
+                Cadastros <span> Detalhes do cadastro de TabelaTeste </span>                                                                                                                 
+            </h1>                                                                                                                                                                             
+        </div>                                                                                                                                                                                
+    </div>                                                                                                                                                                                    
+    <!-- widget grid -->                                                                                                                                                                      
+    <section id="widget-grid" class="">                                                                                                                                                   
+        <!-- NEW ROW -->                                                                                                                                                                      
+        <div class="row">                                                                                                                                                                   
+            <!-- NEW COL START -->                                                                                                                                                            
+            <article class="col-sm-12 col-md-12 col-lg-12">                                                                                                                                 
+                <!-- Widget ID (each widget will need unique ID)-->                                                                                                                           
+                <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-3" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <header>                                                                                                                                                                  
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>                                                                                                     
+                        <h2>Formulário de cadastro</h2>                                                                                                                                       
+                    </header>                                                                                                                                                                 
+                    <!-- widget div-->                                                                                                                                                        
+                    <div>                                                                                                                                                                     
+                        <!-- widget edit box -->                                                                                                                                              
+                        <div class="jarviswidget-editbox">                                                                                                                                  
+                            <!-- This area used as dropdown edit box -->                                                                                                                      
+                        </div>                                                                                                                                                                
+                        <!-- end widget edit box -->                                                                                                                                          
+                        <!-- widget content -->                                                                                                                                               
+                        <div class="widget-body no-padding">                                                                                                                                
+                            <div class="smart-form">                                                                                                                                        
+                                <header>Detalhes do cadastro de TabelaTeste</header>                                                                                                     
+                                @Html.AntiForgeryToken()                                                                                                                                      
+                                <fieldset>                                                                                                                                                    
+                                    @Html.ValidationBootstrap()                                                                                                                               
+                                        <section class="col col-3">                                                                                                                                             
+                                            @Html.LabelFor(m => Model.Codigo, new { @class = "label" })                                                                   
+                                            <label class="input">                                                                                                                          
+                                                <i class="icon-append fa fa-question-circle"></i>                                                                                           
+                                                Informe o @Html.TextBoxFor(m => Model.Codigo, new { placeholder = @ClassesAdicionais.Utils.SubstituiAcentoHTML(@Html.DisplayNameFor(m => m.Codigo).ToString()), disabled = "disabled" })
+                                            </label>                                                                                              
+                                        </section>                                                                                                
+                                        <section class="col col-3">                                                                                                                                             
+                                            @Html.LabelFor(m => Model.Descricao, new { @class = "label" })                                                                   
+                                            <label class="input">                                                                                                                          
+                                                <i class="icon-append fa fa-question-circle"></i>                                                                                           
+                                                Informe o @Html.TextBoxFor(m => Model.Descricao, new { placeholder = @ClassesAdicionais.Utils.SubstituiAcentoHTML(@Html.DisplayNameFor(m => m.Descricao).ToString()), disabled = "disabled" })
+                                            </label>                                                                                              
+                                        </section>                                                                                                
+                                        <section class="col col-3">                                                                                                                                             
+                                            @Html.LabelFor(m => Model.CampoUm, new { @class = "label" })                                                                   
+                                            <label class="input">                                                                                                                          
+                                                <i class="icon-append fa fa-question-circle"></i>                                                                                           
+                                                Informe o @Html.TextBoxFor(m => Model.CampoUm, new { placeholder = @ClassesAdicionais.Utils.SubstituiAcentoHTML(@Html.DisplayNameFor(m => m.CampoUm).ToString()), disabled = "disabled" })
+                                            </label>                                                                                              
+                                        </section>                                                                                                
+                                        <section class="col col-3">                                                                                                                                             
+                                            @Html.LabelFor(m => Model.CampoDois, new { @class = "label" })                                                                   
+                                            <label class="input">                                                                                                                          
+                                                <i class="icon-append fa fa-question-circle"></i>                                                                                           
+                                                Informe o @Html.TextBoxFor(m => Model.CampoDois, new { placeholder = @ClassesAdicionais.Utils.SubstituiAcentoHTML(@Html.DisplayNameFor(m => m.CampoDois).ToString()), disabled = "disabled" })
+                                            </label>                                                                                              
+                                        </section>                                                                                                
+                                        <section class="col col-3">                                                                                                                                             
+                                            @Html.LabelFor(m => Model.CampoTres, new { @class = "label" })                                                                   
+                                            <label class="input">                                                                                                                          
+                                                <i class="icon-append fa fa-question-circle"></i>                                                                                           
+                                                Informe o @Html.TextBoxFor(m => Model.CampoTres, new { placeholder = @ClassesAdicionais.Utils.SubstituiAcentoHTML(@Html.DisplayNameFor(m => m.CampoTres).ToString()), disabled = "disabled" })
+                                            </label>                                                                                              
+                                        </section>                                                                                                
+                                        <section class="col col-3">                                                                                                                                             
+                                            @Html.LabelFor(m => Model.CampoQuatro, new { @class = "label" })                                                                   
+                                            <label class="input">                                                                                                                          
+                                                <i class="icon-append fa fa-question-circle"></i>                                                                                           
+                                                Informe o @Html.TextBoxFor(m => Model.CampoQuatro, new { placeholder = @ClassesAdicionais.Utils.SubstituiAcentoHTML(@Html.DisplayNameFor(m => m.CampoQuatro).ToString()), disabled = "disabled" })
+                                            </label>                                                                                              
+                                        </section>                                                                                                
+                                        <section class="col col-3">                                                                                      
+                                            <div>                                                                                                        
+                                                <label class="checkbox-inline">                                                                          
+                                                    @Html.CheckBoxFor(m => Model.CampoBool, new { @class = "style-0", disabled = "disabled" })      
+                                                    @Html.LabelFor(m => Model.CampoBool, new { @class = "label" })                                  
+                                                </label>                                                                                                 
+                                            </div>                                                                                                       
+                                        </section>                                                                                                
+                                        <section class="col col-3">                                                                                                                                             
+                                            @Html.LabelFor(m => Model.CampoData, new { @class = "label" })                                                                   
+                                            <label class="input">                                                                                                                          
+                                                <i class="icon-append fa fa-question-circle"></i>                                                                                           
+                                                Informe o @Html.TextBoxFor(m => Model.CampoData, new { placeholder = @ClassesAdicionais.Utils.SubstituiAcentoHTML(@Html.DisplayNameFor(m => m.CampoData).ToString()), disabled = "disabled" })
+                                            </label>                                                                                              
+                                        </section>                                                                                                
+                                </fieldset>                                                                                                                                                   
+                                <footer>                                                                                                                                                      
+                                    @Html.ActionLink("Alterar", "edit", new { id = Model.Codigo }, new { @class = "btn btn-primary" })                                          
+                                    @Html.ActionLink("Relatório", "index", new { /*id = Model.Codigo*/ }, new { @class = "btn btn-default" })                                   
+                                    @Html.ActionLink("Novo", "create", new { /*id = Model.Codigo*/ }, new { @class = "btn btn-default" })                                       
+                                    <button type="button" class="btn btn-default" onclick="window.history.back();"> Voltar </button>                                                    
+                                </footer>                                                                                                                                                     
+                            </div>                                                                                                                                                            
+                        </div>                                                                                                                                                                
+                        <!-- end widget content -->                                                                                                                                           
+                    </div>                                                                                                                                                                    
+                    <!-- end widget div -->                                                                                                                                                   
+                </div>                                                                                                                                                                        
+                <!-- end widget -->                                                                                                                                                           
+            </article>                                                                                                                                                                        
+            <!-- END COL -->                                                                                                                                                                  
+        </div>                                                                                                                                                                                
+        <!-- END ROW-->                                                                                                                                                                       
+    </section>                                                                                                                                                                                
+    <!-- end widget grid -->                                                                                                                                                                  
+</div>                                                                                                                                                                                        
+<!-- END MAIN CONTENT -->                                                                                                                                                                     

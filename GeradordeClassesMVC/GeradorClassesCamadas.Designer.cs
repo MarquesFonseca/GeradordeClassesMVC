@@ -181,6 +181,7 @@
             this.ckAutentica.TabIndex = 15;
             this.ckAutentica.Text = "Usar Autenticação Windows";
             this.ckAutentica.UseVisualStyleBackColor = true;
+            this.ckAutentica.CheckedChanged += new System.EventHandler(this.ckAutentica_CheckedChanged);
             // 
             // txtSenha
             // 
@@ -225,6 +226,7 @@
             this.txtBanco.Name = "txtBanco";
             this.txtBanco.Size = new System.Drawing.Size(152, 20);
             this.txtBanco.TabIndex = 14;
+            this.txtBanco.Text = "BANCOTESTE";
             // 
             // lblBanco
             // 
@@ -252,6 +254,7 @@
             this.txtServidor.Name = "txtServidor";
             this.txtServidor.Size = new System.Drawing.Size(164, 20);
             this.txtServidor.TabIndex = 12;
+            this.txtServidor.Text = "MARQUES-PC\\SQLEXPRESS";
             // 
             // lblServidor
             // 
