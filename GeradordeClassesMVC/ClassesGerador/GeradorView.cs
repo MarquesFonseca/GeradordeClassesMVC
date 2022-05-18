@@ -29,7 +29,7 @@ namespace GeradorView
         // Contrutor
         public GeradorView()
         {
-            strData = DateTime.Today.ToShortDateString() + " ‡s " + DateTime.Now.ToShortTimeString();
+            strData = DateTime.Today.ToShortDateString() + " √†s " + DateTime.Now.ToShortTimeString();
             s = " ";
             tb = "      ";
 
@@ -58,7 +58,7 @@ namespace GeradorView
                     objCodigo.AppendLine("@model IEnumerable<DTO.Tab" + tabelaFormatada + ">                                                                                                                                                                        ");
                     objCodigo.AppendLine("                                                                                                                                                                                                               ");
                     objCodigo.AppendLine("@{                                                                                                                                                                                                             ");
-                    objCodigo.AppendLine("    ViewBag.Title = \"RelatÛrio - " + tabelaFormatada + "\";                                                                                                                                                               ");
+                    objCodigo.AppendLine("    ViewBag.Title = \"Relat√≥rio - " + tabelaFormatada + "\";                                                                                                                                                               ");
                     objCodigo.AppendLine("    Layout = \"~/Views/Shared/_Layout.cshtml\";                                                                                                                                                 ");
                     objCodigo.AppendLine("}                                                                                                                                                                                                              ");
                     objCodigo.AppendLine("                                                                                                                                                                                                               ");
@@ -68,7 +68,7 @@ namespace GeradorView
                     objCodigo.AppendLine("        <div class=\"col-xs-12 col-sm-7 col-md-7 col-lg-4\">                                                                                                                                                     ");
                     objCodigo.AppendLine("            <h1 class=\"page-title txt-color-blueDark\">                                                                                                                                                         ");
                     objCodigo.AppendLine("                <i class=\"fa fa-table fa-fw \"></i>                                                                                                                                                             ");
-                    objCodigo.AppendLine("                RelatÛrios <span>                                                                                                                                                                              ");
+                    objCodigo.AppendLine("                Relat√≥rios <span>                                                                                                                                                                              ");
                     objCodigo.AppendLine("                    > " + tabelaFormatada + "                                                                                                                                                                            ");
                     objCodigo.AppendLine("                </span>                                                                                                                                                                                        ");
                     objCodigo.AppendLine("            </h1>                                                                                                                                                                                              ");
@@ -121,71 +121,71 @@ namespace GeradorView
                     #endregion
 
                     #region Loop Colunas
-                    // Abre conex„o com o banco
+                    // Abre conex√£o com o banco
                     objBanco = new Banco.Banco(_conexao);
                     // Cria o objeto da classe Library
                     objLib = new Library.Library();
                     // Faz a leitura de todas as colunas da tabela
                     objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
-                    // Conta o n˙mero de colunas
+                    // Conta o n√∫mero de colunas
                     nunrec = objDr.FieldCount;
 
                     for (int i = 0; i < nunrec; i++)
                     {
                         nomeCampoAtual = objDr.GetName(i);
-                        if (i == 0)//pega o 1∫
+                        if (i == 0)//pega o 1¬∫
                         {
                             nomePrimeiroCampo = objDr.GetName(i);
-                            objCodigo.AppendLine("@foreach (var itemColunas in Model)");
-                            objCodigo.AppendLine("{");
-                            objCodigo.AppendLine("<th style=\"max-width: 55px;\">[&nbsp;&nbsp;AÁıes&nbsp;&nbsp;]</th>");
+                            objCodigo.AppendLine("                                      @foreach (var itemColunas in Model)");
+                            objCodigo.AppendLine("                                      {");
+                            objCodigo.AppendLine("                                      <th style=\"max-width: 55px;\">[&nbsp;&nbsp;A√ß√µes&nbsp;&nbsp;]</th>");
                             continue;
                         }
 
-                        if (i == 1)//pega o 2∫
+                        if (i == 1)//pega o 2¬∫
                         {
-                            objCodigo.AppendLine("<th>@Html.LabelFor(m => itemColunas." + objDr.GetName(i) + ")</th>");
+                            objCodigo.AppendLine("                                          <th>@Html.LabelFor(m => itemColunas." + objDr.GetName(i) + ")</th>");
                             continue;
                         }
 
-                        objCodigo.AppendLine("<th data-hide=\"phone,tablet\">@Html.LabelFor(m => itemColunas." + objDr.GetName(i) + ")</th>");
+                        objCodigo.AppendLine("                                          <th data-hide=\"phone,tablet\">@Html.LabelFor(m => itemColunas." + objDr.GetName(i) + ")</th>");
 
                         if (i == nunrec - 1)//pega o ultimo
                         {
-                            objCodigo.AppendLine("<th style=\"max-width: 20px;\"></th>");
-                            objCodigo.AppendLine("break;");
-                            objCodigo.AppendLine("}");
+                            objCodigo.AppendLine("                                          <th style=\"max-width: 20px;\"></th>");
+                            objCodigo.AppendLine("                                      break;");
+                            objCodigo.AppendLine("                                      }");
                             continue;
                         }
                     }
 
-                    // fecha conex„o
+                    // fecha conex√£o
                     objBanco.CloseConn();
                     objLib = null;
 
-                    objCodigo.AppendLine("</tr>");
-                    objCodigo.AppendLine("</thead>");
+                    objCodigo.AppendLine("                                    </tr>");
+                    objCodigo.AppendLine("                                </thead>");
 
                     #endregion
 
                     #region Loop Linhas
-                    // Abre conex„o com o banco
+                    // Abre conex√£o com o banco
                     objBanco = new Banco.Banco(_conexao);
                     // Cria o objeto da classe Library
                     objLib = new Library.Library();
                     // Faz a leitura de todas as colunas da tabela
                     objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
-                    // Conta o n˙mero de colunas
+                    // Conta o n√∫mero de colunas
                     nunrec = objDr.FieldCount;
 
 
                     for (int i = 0; i < nunrec; i++)
                     {
                         nomeCampoAtual = objDr.GetName(i);
-                        if (i == 0)//pega 0 1∫
+                        if (i == 0)//pega 0 1¬∫
                         {
                             nomePrimeiroCampo = objDr.GetName(i);
-                            objCodigo.AppendLine("<tbody>                                                                                                                                                                        ");
+                            objCodigo.AppendLine("                                <tbody>                                                                                                                                                                        ");
                             objCodigo.AppendLine("                                    @foreach (var item in Model)                                                                                                                                               ");
                             objCodigo.AppendLine("                                    {                                                                                                                                                                          ");
                             objCodigo.AppendLine("                                        <tr>                                                                                                                                                                   ");
@@ -198,7 +198,7 @@ namespace GeradorView
                             continue;
                         }
 
-                        objCodigo.AppendLine("<td>@Html.DisplayFor(modelItem => item." + objDr.GetName(i) + ")</td>");
+                        objCodigo.AppendLine("                                            <td>@Html.DisplayFor(modelItem => item." + objDr.GetName(i) + ")</td>");
 
                         if (i == nunrec - 1)//pega o ultimo
                         {
@@ -226,7 +226,7 @@ namespace GeradorView
                         }
                     }
 
-                    // fecha conex„o
+                    // fecha conex√£o
                     objBanco.CloseConn();
                     objLib = null;
                     #endregion
@@ -397,7 +397,7 @@ namespace GeradorView
                     objCodigo.AppendLine("                <div class=\"jarviswidget jarviswidget-color-blueDark\" id=\"wid-id-3\" data-widget-colorbutton=\"false\" data-widget-editbutton=\"false\" data-widget-custombutton=\"false\">");
                     objCodigo.AppendLine("                    <header>                                                                                                                                                                  ");
                     objCodigo.AppendLine("                        <span class=\"widget-icon\"> <i class=\"fa fa-edit\"></i> </span>                                                                                                     ");
-                    objCodigo.AppendLine("                        <h2>Formul·rio de cadastro</h2>                                                                                                                                       ");
+                    objCodigo.AppendLine("                        <h2>Formul√°rio de cadastro</h2>                                                                                                                                       ");
                     objCodigo.AppendLine("                    </header>                                                                                                                                                                 ");
                     objCodigo.AppendLine("                    <!-- widget div-->                                                                                                                                                        ");
                     objCodigo.AppendLine("                    <div>                                                                                                                                                                     ");
@@ -418,20 +418,20 @@ namespace GeradorView
 
 
                     #region Loop Colunas
-                    // Abre conex„o com o banco
+                    // Abre conex√£o com o banco
                     objBanco = new Banco.Banco(_conexao);
                     // Cria o objeto da classe Library
                     objLib = new Library.Library();
                     // Faz a leitura de todas as colunas da tabela
                     objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
-                    // Conta o n˙mero de colunas
+                    // Conta o n√∫mero de colunas
                     nunrec = objDr.FieldCount;
                     for (int i = 0; i < nunrec; i++)
                     {
                         bool EforengKey = RetornaSeEForengKey(nomeTabela: strTabela, nomeColuna: objDr.GetName(i));
                         nomeCampoAtual = objDr.GetName(i);
 
-                        if (i == 0)//pega o 1∫
+                        if (i == 0)//pega o 1¬∫
                         {
                             nomePrimeiroCampo = objDr.GetName(i);
                         }
@@ -458,7 +458,7 @@ namespace GeradorView
                         continue;
                     }
 
-                    // fecha conex„o
+                    // fecha conex√£o
                     objBanco.CloseConn();
                     objLib = null;
 
@@ -469,7 +469,7 @@ namespace GeradorView
                     objCodigo.AppendLine("                                </fieldset>                                                                                                                                                   ");
                     objCodigo.AppendLine("                                <footer>                                                                                                                                                      ");
                     objCodigo.AppendLine("                                    @Html.ActionLink(\"Alterar\", \"edit\", new { id = Model." + nomePrimeiroCampo + " }, new { @class = \"btn btn-primary\" })                                          ");
-                    objCodigo.AppendLine("                                    @Html.ActionLink(\"RelatÛrio\", \"index\", new { /*id = Model." + nomePrimeiroCampo + "*/ }, new { @class = \"btn btn-default\" })                                   ");
+                    objCodigo.AppendLine("                                    @Html.ActionLink(\"Relat√≥rio\", \"index\", new { /*id = Model." + nomePrimeiroCampo + "*/ }, new { @class = \"btn btn-default\" })                                   ");
                     objCodigo.AppendLine("                                    @Html.ActionLink(\"Novo\", \"create\", new { /*id = Model." + nomePrimeiroCampo + "*/ }, new { @class = \"btn btn-default\" })                                       ");
                     objCodigo.AppendLine("                                    <button type=\"button\" class=\"btn btn-default\" onclick=\"window.history.back();\"> Voltar </button>                                                    ");
                     objCodigo.AppendLine("                                </footer>                                                                                                                                                     ");
@@ -500,7 +500,7 @@ namespace GeradorView
                     objCodigo.AppendLine("@model DTO.Tab" + tabelaFormatada + "                                                                                                                                             ");
                     objCodigo.AppendLine("                                                                                                                                                                                              ");
                     objCodigo.AppendLine("@{                                                                                                                                                                                            ");
-                    objCodigo.AppendLine("    ViewBag.Title = \"AlteraÁ„o do cadastro " + tabelaFormatada + "\";                                                                                                                                  ");
+                    objCodigo.AppendLine("    ViewBag.Title = \"Altera√ß√£o do cadastro " + tabelaFormatada + "\";                                                                                                                                  ");
                     objCodigo.AppendLine("    Layout = \"~/Views/Shared/_Layout.cshtml\";                                                                                                                                               ");
                     objCodigo.AppendLine("}                                                                                                                                                                                             ");
                     objCodigo.AppendLine("<!-- MAIN CONTENT -->                                                                                                                                                                         ");
@@ -509,7 +509,7 @@ namespace GeradorView
                     objCodigo.AppendLine("        <div class=\"col-sm-12 col-md-12 col-lg-12\">                                                                                                                                         ");
                     objCodigo.AppendLine("            <h1 class=\"page-title txt-color-blueDark\">                                                                                                                                      ");
                     objCodigo.AppendLine("                <i class=\"fa fa-edit fa-fw \"></i>                                                                                                                                           ");
-                    objCodigo.AppendLine("                Cadastros <span> > AlteraÁ„o do cadastro " + tabelaFormatada + "</span>                                                                                                                       ");
+                    objCodigo.AppendLine("                Cadastros <span> > Altera√ß√£o do cadastro " + tabelaFormatada + "</span>                                                                                                                       ");
                     objCodigo.AppendLine("            </h1>                                                                                                                                                                             ");
                     objCodigo.AppendLine("        </div>                                                                                                                                                                                ");
                     objCodigo.AppendLine("    </div>                                                                                                                                                                                    ");
@@ -523,7 +523,7 @@ namespace GeradorView
                     objCodigo.AppendLine("                <div class=\"jarviswidget jarviswidget-color-blueDark\" id=\"wid-id-3\" data-widget-colorbutton=\"false\" data-widget-editbutton=\"false\" data-widget-custombutton=\"false\">");
                     objCodigo.AppendLine("                    <header>                                                                                                                                                                  ");
                     objCodigo.AppendLine("                        <span class=\"widget-icon\"> <i class=\"fa fa-edit\"></i> </span>                                                                                                     ");
-                    objCodigo.AppendLine("                        <h2>Formul·rio de cadastro</h2>                                                                                                                                       ");
+                    objCodigo.AppendLine("                        <h2>Formul√°rio de cadastro</h2>                                                                                                                                       ");
                     objCodigo.AppendLine("                    </header>                                                                                                                                                                 ");
                     objCodigo.AppendLine("                    <!-- widget div-->                                                                                                                                                        ");
                     objCodigo.AppendLine("                    <div>                                                                                                                                                                     ");
@@ -535,27 +535,27 @@ namespace GeradorView
                     objCodigo.AppendLine("                        <!-- widget content -->                                                                                                                                               ");
                     objCodigo.AppendLine("                        <div class=\"widget-body no-padding\">                                                                                                                                ");
                     objCodigo.AppendLine("                            <form action=\"@Url.Action(\"edit\", \"" + tabelaFormatada + "\")\" method=\"POST\" class=\"smart-form\">                                                                  ");
-                    objCodigo.AppendLine("                                <header>AlteraÁ„o do cadastro " + tabelaFormatada + "</header>                                                                                                                 ");
+                    objCodigo.AppendLine("                                <header>Altera√ß√£o do cadastro " + tabelaFormatada + "</header>                                                                                                                 ");
                     objCodigo.AppendLine("                                @Html.AntiForgeryToken()                                                                                                                                      ");
                     objCodigo.AppendLine("                                <fieldset>                                                                                                                                                    ");
                     objCodigo.AppendLine("                                    @Html.ValidationBootstrap()                                                                                                                               ");
                     #endregion
 
                     #region Loop Colunas
-                    // Abre conex„o com o banco
+                    // Abre conex√£o com o banco
                     objBanco = new Banco.Banco(_conexao);
                     // Cria o objeto da classe Library
                     objLib = new Library.Library();
                     // Faz a leitura de todas as colunas da tabela
                     objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
-                    // Conta o n˙mero de colunas
+                    // Conta o n√∫mero de colunas
                     nunrec = objDr.FieldCount;
 
                     for (int i = 0; i < nunrec; i++)
                     {
                         bool EforengKey = RetornaSeEForengKey(nomeTabela: strTabela, nomeColuna: objDr.GetName(i));
                         nomeCampoAtual = objDr.GetName(i);
-                        if (i == 0)//pega o 1∫
+                        if (i == 0)//pega o 1¬∫
                         {
                             continue;
                         }
@@ -597,7 +597,7 @@ namespace GeradorView
                         continue;
                     }
 
-                    // fecha conex„o
+                    // fecha conex√£o
                     objBanco.CloseConn();
                     objLib = null;
 
@@ -664,7 +664,7 @@ namespace GeradorView
                     objCodigo.AppendLine("                <div class=\"jarviswidget jarviswidget-color-blueDark\" id=\"wid-id-3\" data-widget-colorbutton=\"false\" data-widget-editbutton=\"false\" data-widget-custombutton=\"false\">");
                     objCodigo.AppendLine("                    <header>                                                                                                                                                                  ");
                     objCodigo.AppendLine("                        <span class=\"widget-icon\"> <i class=\"fa fa-edit\"></i> </span>                                                                                                     ");
-                    objCodigo.AppendLine("                        <h2>Formul·rio de cadastro</h2>                                                                                                                                       ");
+                    objCodigo.AppendLine("                        <h2>Formul√°rio de cadastro</h2>                                                                                                                                       ");
                     objCodigo.AppendLine("                    </header>                                                                                                                                                                 ");
                     objCodigo.AppendLine("                    <!-- widget div-->                                                                                                                                                        ");
                     objCodigo.AppendLine("                    <div>                                                                                                                                                                     ");
@@ -683,20 +683,20 @@ namespace GeradorView
                     #endregion
 
                     #region Loop Colunas
-                    // Abre conex„o com o banco
+                    // Abre conex√£o com o banco
                     objBanco = new Banco.Banco(_conexao);
                     // Cria o objeto da classe Library
                     objLib = new Library.Library();
                     // Faz a leitura de todas as colunas da tabela
                     objDr = objBanco.QueryConsulta("SELECT * FROM " + strTabela);
-                    // Conta o n˙mero de colunas
+                    // Conta o n√∫mero de colunas
                     nunrec = objDr.FieldCount;
 
                     for (int i = 0; i < nunrec; i++)
                     {
                         bool EforengKey = RetornaSeEForengKey(nomeTabela: strTabela, nomeColuna: objDr.GetName(i));
                         nomeCampoAtual = objDr.GetName(i);
-                        if (i == 0)//pega o 1∫
+                        if (i == 0)//pega o 1¬∫
                         {
                             continue;
                         }
@@ -738,7 +738,7 @@ namespace GeradorView
                         continue;
                     }
 
-                    // fecha conex„o
+                    // fecha conex√£o
                     objBanco.CloseConn();
                     objLib = null;
 
